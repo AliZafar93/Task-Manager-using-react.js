@@ -40,7 +40,13 @@ function TaskList({ tasks, deleteTask, editTask, toggleTaskCompleted }) {
               />
             </td>
             <td style={{ border: '1px solid #ccc', padding: '8px' }}>
-              <button onClick={() => deleteTask(task.id)} style={{ marginRight: '8px' }}>Delete</button>
+              <button
+                className='deletebtn'
+                onClick={() => deleteTask(task.id)}
+                style={{ marginRight: '8px', backgroundColor: 'red', color: 'white' }}
+              >
+                Delete
+              </button>
             </td>
           </tr>
         ))}

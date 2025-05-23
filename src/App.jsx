@@ -6,6 +6,7 @@ import './App.css';
 
 function App() {
   const [tasks, setTasks] = useState([]);
+  const [filter, setFilter] = useState('all');
 
   const addTask = (task) => {
     setTasks([...tasks, { ...task, completed: false }]);
@@ -25,12 +26,19 @@ function App() {
     ));
   };
 
+  // Filter tasks based on filter state
+  const filteredTasks = tasks.filter((task) => {
+    if (filter === 'completed') return task.completed;
+    if (filter === 'uncompleted') return !task.completed;
+    return true;
+  });
+
   return (
     <>
-      <Header />
+      <Header filter={filter} setFilter={setFilter} />
       <TaskForm addTask={addTask} />
       <TaskList
-        tasks={tasks}
+        tasks={filteredTasks}
         deleteTask={deleteTask}
         editTask={editTask}
         toggleTaskCompleted={toggleTaskCompleted}
