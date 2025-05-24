@@ -7,6 +7,7 @@ import './App.css';
 function App() {
   const [tasks, setTasks] = useState([]);
   const [filter, setFilter] = useState('all');
+  const [editingTaskId, setEditingTaskId] = useState(null);
 
   const addTask = (task) => {
     setTasks([...tasks, { ...task, completed: false }]);
@@ -16,8 +17,17 @@ function App() {
     setTasks(tasks.filter((task) => task.id !== taskId));
   };
 
-  const editTask = (updatedTask) => {
+  const editTask = (taskId) => {
+    setEditingTaskId(taskId);
+  };
+
+  const saveTask = (updatedTask) => {
     setTasks(tasks.map((task) => (task.id === updatedTask.id ? updatedTask : task)));
+    setEditingTaskId(null);
+  };
+
+  const cancelEdit = () => {
+    setEditingTaskId(null);
   };
 
   const toggleTaskCompleted = (taskId) => {
@@ -41,6 +51,9 @@ function App() {
         tasks={filteredTasks}
         deleteTask={deleteTask}
         editTask={editTask}
+        saveTask={saveTask}
+        cancelEdit={cancelEdit}
+        editingTaskId={editingTaskId}
         toggleTaskCompleted={toggleTaskCompleted}
       />
     </>
