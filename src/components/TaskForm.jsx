@@ -17,22 +17,20 @@ function TaskForm({ addTask }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ display: 'flex', justifyContent: 'center', margin: '2rem 0' }}>
+    <form className="task-form" onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder="Task Name"
         value={name}
         onChange={(e) => setName(e.target.value)}
-        style={{ marginRight: '1rem', padding: '0.5rem', width: '200px' }}
       />
       <input
         type="text"
         placeholder="Task Description"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
-        style={{ marginRight: '1rem', padding: '0.5rem', width: '300px' }}
       />
-      <button type="submit" style={{ padding: '0.5rem 1rem', background: '#007bff', color: '#fff', border: 'none', borderRadius: '6px' }}>
+      <button type="submit">
         Add Task
       </button>
     </form>
